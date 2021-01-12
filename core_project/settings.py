@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     
     # 3rd party app
     'rest_framework',
+    
+    # local apps
+    'accounts.apps.AccountsConfig',
+    'weather.apps.WeatherConfig',
+    'frontend.apps.FrontendConfig',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +130,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Configure the User Model by default
+AUTH_USER_MODEL = 'accounts.CustomUser'
