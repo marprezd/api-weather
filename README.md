@@ -16,6 +16,15 @@ An API built with Django/Django Rest Framework on the backend and ReactJs on the
 
 ```
 .
+├── accounts
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
 ├── core_project
 │   ├── asgi.py
 │   ├── __init__.py
@@ -24,11 +33,29 @@ An API built with Django/Django Rest Framework on the backend and ReactJs on the
 │   └── wsgi.py
 ├── docker-compose.yml
 ├── Dockerfile
+├── frontend
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
 ├── LICENSE.txt
 ├── manage.py
 ├── Pipfile
 ├── Pipfile.lock
-└── README.md
+├── README.md
+└── weather
+    ├── admin.py
+    ├── apps.py
+    ├── __init__.py
+    ├── migrations
+    │   └── __init__.py
+    ├── models.py
+    ├── tests.py
+    └── views.py
 
 ```
 
