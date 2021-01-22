@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     
     # 3rd party app
     'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
     
     # local apps
     'accounts.apps.AccountsConfig',
@@ -84,7 +86,7 @@ WSGI_APPLICATION = 'core_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'weather',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'db',
@@ -133,3 +135,11 @@ STATIC_URL = '/static/'
 
 # Configure the User Model by default
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Set a permissions policy
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        # Unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+}
