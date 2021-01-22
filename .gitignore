@@ -88,6 +88,7 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
+Pipfile.lock
 
 ### Node ###
 # Logs
