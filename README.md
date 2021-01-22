@@ -45,16 +45,19 @@ An API built with Django/Django Rest Framework on the backend and ReactJs on the
 ├── LICENSE.txt
 ├── manage.py
 ├── Pipfile
-├── Pipfile.lock
 ├── README.md
 └── weather
     ├── admin.py
     ├── apps.py
     ├── __init__.py
     ├── migrations
+    │   ├── 0001_initial.py
     │   └── __init__.py
     ├── models.py
+    ├── permissions.py
+    ├── serializers.py
     ├── tests.py
+    ├── urls.py
     └── views.py
 
 ```
@@ -64,7 +67,8 @@ An API built with Django/Django Rest Framework on the backend and ReactJs on the
 - [x] Create a virtual environment, install Django/Django Rest Framework, and create a Django Project.
 - [x] Add Dockerfile and docker-compose.yml.
 - [x] Setting databases.
-- [ ] Build models.
-- [ ] Run first migrations.
-- [ ] Run tests.
+- [x] Build models.
+- [x] Run first migrations.
+- [x] Run tests.
+- [x] Set permissions policy.
 
