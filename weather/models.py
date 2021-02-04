@@ -1,22 +1,9 @@
 # api-weather/weather/models.py
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.core.exceptions import ValidationError
-
-# Custom validators
-# https://docs.djangoproject.com/en/3.1/ref/validators/
-def validate_temperature(value):
-    if value < -98 or value > 60:
-        raise ValidationError('%(value)s must be in the range [-98, 60]', params={'value': value},)  
-
-def validate_visibility(value):
-    if value < 0.0 or value > 100.0:
-        raise ValidationError('%(value)s must be in the range [0.0, 100.0]', params={'value': value},)  
-        
-def validate_humidity_precipitation(value):
-    if value > 100:
-        raise ValidationError('%(value)s should not be greater than 100', params={'value': value},)  
+from django.core.validators import MinValueValidator, MaxValueValidator
            
+
 class Weather(models.Model):
     class WindDirection(models.TextChoices):
         NONE = "undefined", "Undefined",
@@ -48,15 +35,18 @@ class Weather(models.Model):
         
     city = models.CharField(max_length=50, help_text='Use the capitalize format, e.g: Madrid')
     country = models.CharField(max_length=50, help_text='Use the capitalize format, e.g: Spain')
-    temperature = models.IntegerField(help_text='Temperature in ºC', validators=[validate_temperature])
+    temperature = models.IntegerField(help_text='Temperature in ºC', 
+                                      validators=[MinValueValidator(-50), MaxValueValidator(50)])
     atmospheric_pressure = models.FloatField(help_text='Atmospheric pressure in mbar')
     wind_sped = models.PositiveIntegerField(help_text='Wind speed in km/h')
     wind_direction = models.CharField("Wind direction",
                                       max_length=9,
                                       choices=WindDirection.choices,
                                       default=WindDirection.NONE)
-    humidity = models.PositiveIntegerField(validators=[validate_humidity_precipitation])
-    precipitation_probability = models.PositiveIntegerField(validators=[validate_humidity_precipitation])
+    humidity = models.PositiveIntegerField(
+        validators=[MaxValueValidator(100)])
+    precipitation_probability = models.PositiveIntegerField(
+        validators=[MaxValueValidator(100)])
     types_precipitation = models.CharField("Types of Precipitation",
                                            max_length=9,
                                            choices=TypesPrecipitation.choices,
@@ -65,12 +55,13 @@ class Weather(models.Model):
                                   max_length=13,
                                   choices=Cloudiness.choices,
                                   default=Cloudiness.NONE)
-    visibility = models.FloatField(help_text='Visibility in km', validators=[validate_visibility])
+    visibility = models.FloatField(help_text='Visibility in km', 
+                                   validators=[MinValueValidator(1.0), MaxValueValidator(30.0)])
     date = models.DateTimeField()
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-        
-    def __str__(self):
-        return self.city
+    
+    def __str__(self) -> str:
+        return "{}".format(self.city)
     
