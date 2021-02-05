@@ -63,5 +63,5 @@ class Weather(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self) -> str:
-        return "{}".format(self.city)
+        return "Weather forecast for {}".format(self.city)
     
