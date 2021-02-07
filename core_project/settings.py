@@ -142,4 +142,7 @@ REST_FRAMEWORK = {
         # Unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
+    # Configure the global pagination settings
+    'DEFAULT_PAGINATION_CLASS': 'weather.pagination.HeaderLimitOffsetPagination',
+    'PAGE_SIZE': 3,
 }
