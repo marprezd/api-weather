@@ -52,11 +52,16 @@ An API built with Django/Django Rest Framework on the backend and ReactJs on the
     ├── __init__.py
     ├── migrations
     │   ├── 0001_initial.py
+    │   ├── 0002_auto_20210201_1702.py
     │   └── __init__.py
     ├── models.py
+    ├── pagination.py
     ├── permissions.py
     ├── serializers.py
-    ├── tests.py
+    ├── tests
+    │   ├── factories.py
+    │   ├── __init__.py
+    │   └── tests.py
     ├── urls.py
     └── views.py
 
@@ -71,4 +76,8 @@ An API built with Django/Django Rest Framework on the backend and ReactJs on the
 - [x] Run first migrations.
 - [x] Run tests.
 - [x] Set permissions policy.
+- [x] Add pagination.
+- [ ] Add authentication.
+- [ ] Add filtering, searching, and ordering.
+
 
