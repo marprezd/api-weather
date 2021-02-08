@@ -1,6 +1,9 @@
 # Pull base image
 FROM python:3.9
 
+# Python install/upgrade pip
+RUN pip install -U pip
+
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
