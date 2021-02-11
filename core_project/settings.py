@@ -37,11 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     
     # 3rd party app
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth.registration',
     
     # local apps
     'accounts.apps.AccountsConfig',
@@ -136,13 +140,19 @@ STATIC_URL = '/static/'
 # Configure the User Model by default
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-# Set a permissions policy
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        # Unauthorized users can view any page, but only authenticated users have write, edit, or delete privileges
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    # Set authentication policy.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     # Configure the global pagination settings
     'DEFAULT_PAGINATION_CLASS': 'weather.pagination.HeaderLimitOffsetPagination',
     'PAGE_SIZE': 3,
 }
+
+# Email Backend config
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# SITE ID Django config
+SITE_ID = 1
