@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'dj_rest_auth.registration',
+    'django_filters',
     
     # local apps
     'accounts.apps.AccountsConfig',
@@ -149,6 +150,12 @@ REST_FRAMEWORK = {
     # Configure the global pagination settings
     'DEFAULT_PAGINATION_CLASS': 'weather.pagination.HeaderLimitOffsetPagination',
     'PAGE_SIZE': 3,
+    # Configure the global filter backends
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ),
 }
 
 # Email Backend config
